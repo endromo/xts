@@ -1,33 +1,27 @@
-import { Router, Request, Response } from "express";
-import IRouter from '../interfaces/IRouter';
-
-
-class UsersRoutes implements IRouter {
-    public router: Router;
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+class UsersRoutes {
     constructor() {
-        this.router = Router();
+        this.router = (0, express_1.Router)();
         this.routes();
     }
-
-    routes(): void {
-        this.router.get("/", (req: Request, res: Response) => {
+    routes() {
+        this.router.get("/", (req, res) => {
             res.setHeader("Content-Type", "text/html");
             res.send("<h2 style='color:#0000FF'>Hi Users</h2>");
         });
-
-        this.router.post("/", (req: Request, res: Response) => {
+        this.router.post("/", (req, res) => {
             res.setHeader("Content-Type", "application/json");
             if (Object.keys(req.body).length == 0) {
                 res.status(403);
                 res.send('{"statusCode":403, "message": "Forbiden", "error": "no request found"}');
-            } else {
+            }
+            else {
                 res.status(200);
                 res.send(req.body);
             }
-
-        })
+        });
     }
 }
-
-export default new UsersRoutes().router;
+exports.default = new UsersRoutes().router;

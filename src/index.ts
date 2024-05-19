@@ -30,5 +30,6 @@ class App {
     }
 }
 
+const port: number = 8000;
 const app = new App().app;
-app.listen(8000);
+app.listen(port);
